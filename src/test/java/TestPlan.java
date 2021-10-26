@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -43,6 +44,7 @@ public class TestPlan {
         ProductPage productPage = new ProductPage(driver);
         productPage.openBurgerMenu();
         productPage.logoutAccount();
+        Assert.assertTrue(productPage.loginButtonIsDisplayed());
     }
 
     @Test(testName = "verificar carrito")
@@ -63,6 +65,11 @@ public class TestPlan {
         loginForm.enterPassword();
         loginForm.clickLogin();
         return loginForm;
+    }
+
+    @AfterSuite
+    public static void cleanUp() {
+        driver.manage().deleteAllCookies();
     }
 
 }

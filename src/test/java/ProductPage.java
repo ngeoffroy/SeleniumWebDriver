@@ -19,12 +19,14 @@ public class ProductPage extends PageObject {
     @FindBy(id = "shopping_cart_container")
     private WebElement shopping_cart_button;
 
+    @FindBy(id = "login-button")
+    private WebElement login_button;
+
     @FindBy (xpath = "//span[contains(text(),'Products')]")
     private WebElement products_label;
 
     @FindBy(xpath = "//span[@class='shopping_cart_badge']")
     private WebElement cart_badge;
-
 
     public ProductPage(WebDriver driver){
         super(driver);
@@ -52,6 +54,10 @@ public class ProductPage extends PageObject {
 
     public void checkShoppingCart(){
         this.shopping_cart_button.click();
+    }
+
+    public boolean loginButtonIsDisplayed(){
+        return this.login_button.isDisplayed();
     }
 
 }
